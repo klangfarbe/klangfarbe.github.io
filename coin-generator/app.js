@@ -9,13 +9,13 @@ function MainController($scope, $log) {
 	var vm = this;
 
 	vm.coins = [
-		{ url: 'images/coins-10.png', count: 10 },
-		{ url: 'images/coins-5.png', count: 10 },
-		{ url: 'images/coins-1.png', count: 10 }
+		{ name: 'gold', url: 'images/coins-10.png', count: 10 },
+		{ name: 'silver', url: 'images/coins-5.png', count: 10 },
+		{ name: 'bronze', url: 'images/coins-1.png', count: 10 }
 	];
 
 	vm.printDoubleSided = true;
-	vm.coinDiameter = 24;
+	vm.coinDiameter = 22;
 
 	vm.paper = {
 		available: [
@@ -138,6 +138,17 @@ function MainController($scope, $log) {
 	var pages = [];
 	var currentPage = undefined;
 
+	function getSettingsAsString(delimiter) {
+		var items = [
+			"coins=" + vm.page.totalCoins,
+			"diameter=" + vm.coinDiameter + 'mm',
+			"doubleSided=" + vm.printDoubleSided || false
+		];
+		_.forEach(vm.coins, function(c) { items.push(c.name + '=' + c.count)});
+
+		return items.join(delimiter || ' ');
+	}
+
 	function createPdf() {
 		vm.calculatePageSettings();
 
@@ -158,20 +169,20 @@ function MainController($scope, $log) {
 
 		_.forEach(pages, function(page, pageNumber) {
 			// create front page
-			createPage(pdf, page, 'Front ' + (pageNumber + 1),
+			createPage(pdf, page, 'Front ' + (pageNumber + 1) + ' - ' + getSettingsAsString(),
 				offsetX, offsetY - 5,
 				function(idx) {return offsetX + idx * vm.coinDiameter},
 				function(idx) {return offsetY + idx * vm.coinDiameter});
 
 			// create back page
 			if(vm.printDoubleSided) {
-				createPage(pdf, page, 'Back ' + (pageNumber + 1),
+				createPage(pdf, page, 'Back ' + (pageNumber + 1) + ' - ' + getSettingsAsString(),
 					offsetX, offsetY - 5,
 					function(idx) {return vm.paper.selected.width - offsetX - (idx + 1) * vm.coinDiameter},
 					function(idx) {return offsetY + idx * vm.coinDiameter});
 			}
 		});
-        pdf.save('boardgame_coins-.pdf');
+        pdf.save('coin_generator_' + getSettingsAsString('_') + '.pdf');
 
         // clear data
 		pages = [];
