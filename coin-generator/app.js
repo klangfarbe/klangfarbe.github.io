@@ -170,14 +170,12 @@ function MainController($scope, $log) {
 		_.forEach(pages, function(page, pageNumber) {
 			// create front page
 			createPage(pdf, page, 'Front ' + (pageNumber + 1) + ' - ' + getSettingsAsString(),
-				offsetX, offsetY - 5,
 				function(idx) {return offsetX + idx * vm.coinDiameter},
 				function(idx) {return offsetY + idx * vm.coinDiameter});
 
 			// create back page
 			if(vm.printDoubleSided) {
 				createPage(pdf, page, 'Back ' + (pageNumber + 1) + ' - ' + getSettingsAsString(),
-					offsetX, offsetY - 5,
 					function(idx) {return vm.paper.selected.width - offsetX - (idx + 1) * vm.coinDiameter},
 					function(idx) {return offsetY + idx * vm.coinDiameter});
 			}
@@ -189,10 +187,14 @@ function MainController($scope, $log) {
         currentPage = undefined;
 	}
 
-	function createPage(pdf, page, pageName, pageNameX, pageNameY, getX, getY) {
+	function createPage(pdf, page, pageName, getX, getY) {
+		var minX = (vm.paper.selected.width - vm.page.maxWidth) / 2;
+		var minY = (vm.paper.selected.height - vm.page.maxHeight) / 2;
+
 		pdf.addPage(vm.paper.selected.width, vm.paper.selected.height);
 		pdf.setFontSize(8);
-		pdf.text(pageNameX, pageNameY, pageName);
+		pdf.text(pageName, minX + 1, minY + 3);
+		pdf.rect(minX, minY, vm.page.maxWidth, vm.page.maxHeight);
 
 		_.forEach(page.rows, function(row, a) {
 			_.forEach(row, function(img, b) {
