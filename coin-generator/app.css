@@ -1,0 +1,9 @@
+img.coin {
+  width: 24mm;
+  height:24mm;
+  margin: 10px auto 10px auto;
+}
+
+.center {
+	text-align: center;
+}

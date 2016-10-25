@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Boardgame Coin Generator</title>
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="app.css" />
+</head>
+<body ng-app="cg" ng-cloak>
+	<div class="container" ng-controller="MainController as vm">
+		<div class="row">
+			<h1>Boardgame Coin Generator</h1>
+			This application will create a PDF file containing the pages
+			to print (front and back) to create a number of coins for your board game.
+
+			Coins have a diameter of 20mm plus 4mm cutting border.
+		</div>
+
+		<form class="form-horizontal">
+		<div class="form-group">
+			<h3>Select number of coins print</h3>
+			<div ng-repeat="c in vm.coins" class="col-sm-4 center">
+				<img class="coin" ng-src="{{c.img}}"></img>
+				<input class="form-control" type="number" min="0" max="100" ng-model="c.count"></input>
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<h3>Printer settings</h3>
+			<div class="col-sm-4">
+				<label>Paper</label>
+				<span uib-dropdown>
+					<button class="btn btn-primary btn-block" type="button" uib-dropdown-toggle>
+						{{vm.paperName()}}
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" uib-dropdown-menu>
+						<li><a href="#" ng-repeat="p in vm.paper.available" ng-click="vm.paper.selected = p">{{vm.paperName(p)}}</a></li>
+					</ul>
+				</span>
+			</div>
+
+			<div class="col-sm-2">
+				<label><span class="glyphicon glyphicon-menu-left">&nbsp;</span>Left</label>
+				<input class="form-control" type="number" min="0" max="100" ng-model="vm.paper.margins.left"></input>
+			</div>
+
+			<div class="col-sm-2">
+				<label><span class="glyphicon glyphicon-menu-up">&nbsp;</span>Top</label>
+				<input class="form-control" type="number" min="0" max="100" ng-model="vm.paper.margins.top"></input>
+			</div>
+
+			<div class="col-sm-2">
+				<label><span class="glyphicon glyphicon-menu-right">&nbsp;</span>Right</label>
+				<input class="form-control" type="number" min="0" max="100" ng-model="vm.paper.margins.right"></input>
+			</div>
+
+			<div class="col-sm-2">
+				<label><span class="glyphicon glyphicon-menu-down">&nbsp;</span>Bottom</label>
+				<input class="form-control" type="number" min="0" max="100" ng-model="vm.paper.margins.bottom"></input>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h3>Page information</h3>
+			<div class="col-sm-2"> <label>Coins</label>
+				<input class="form-control" readonly
+					ng-model="vm.page.totalCoins"></input>
+			</div>
+			<div class="col-sm-2"> <label>Coins to print</label>
+				<input class="form-control" readonly
+					ng-model="vm.page.coinsToPrint"></input>
+			</div>
+			<div class="col-sm-2"> <label>Pages</label>
+				<input class="form-control" readonly
+					ng-model="vm.page.required"></input>
+			 </div>
+			<div class="col-sm-2"> <label>Rows / Page</label>
+				<input class="form-control" readonly
+					ng-model="vm.page.maxRowsPerPage"></input>
+			</div>
+			<div class="col-sm-2"> <label>Coins / Row</label>
+				<input class="form-control" readonly
+					ng-model="vm.page.maxPerRow"></input>
+			 </div>
+			<div class="col-sm-2"> <label>Coins / Page</label>
+				<input class="form-control" readonly
+					ng-model="vm.page.maxPerPage"></input>
+			</div>
+
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-12">
+				<button class="btn btn-warning btn-block" type="submit" ng-click="vm.createPdf()">Create and download PDF</button>
+			</div>
+		</div>
+		</form>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
