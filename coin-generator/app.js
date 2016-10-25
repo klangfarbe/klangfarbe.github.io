@@ -65,9 +65,9 @@ function MainController($scope, $log) {
 		selected: undefined,
 		margins: {
 			top: 10,
-			right: 10,
+			right: 5,
 			bottom: 10,
-			left: 10
+			left: 5
 		}
 	};
 
@@ -142,7 +142,8 @@ function MainController($scope, $log) {
 		var items = [
 			"coins=" + vm.page.totalCoins,
 			"diameter=" + vm.coinDiameter + 'mm',
-			"doubleSided=" + vm.printDoubleSided || false
+			"doubleSided=" + vm.printDoubleSided || false,
+			"margins=" + _.map(vm.paper.margins).join()
 		];
 		_.forEach(vm.coins, function(c) { items.push(c.name + '=' + c.count)});
 
@@ -193,7 +194,7 @@ function MainController($scope, $log) {
 
 		pdf.addPage(vm.paper.selected.width, vm.paper.selected.height);
 		pdf.setFontSize(8);
-		pdf.text(pageName, minX + 1, minY + 3);
+		pdf.text(pageName, minX, minY - 1);
 		pdf.rect(minX, minY, vm.page.maxWidth, vm.page.maxHeight);
 
 		_.forEach(page.rows, function(row, a) {
