@@ -15,7 +15,7 @@
 		<form class="form-horizontal">
 			<h3>Select number of coins print</h3>
 			<div class="form-group">
-				<div ng-repeat="c in vm.coins" class="col-sm-4 center">
+				<div ng-repeat="c in vm.coins" class="col-sm-3 center">
 					<img class="coin" ng-src="{{c.url}}"></img>
 					<input class="form-control" type="number" min="0" max="100" ng-model="c.count"></input>
 				</div>

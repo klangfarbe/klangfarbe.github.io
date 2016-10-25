@@ -9,6 +9,7 @@ function MainController($scope, $log) {
 	var vm = this;
 
 	vm.coins = [
+		{ name: 'platin', url: 'images/coins-25.png', count: 10 },
 		{ name: 'gold', url: 'images/coins-10.png', count: 10 },
 		{ name: 'silver', url: 'images/coins-5.png', count: 10 },
 		{ name: 'bronze', url: 'images/coins-1.png', count: 10 }
