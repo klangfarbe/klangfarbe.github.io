@@ -1,0 +1,590 @@
+<html>
+<head>
+  <title>Small World</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300">
+  <style type="text/css">
+      body {
+          box-sizing: border-box;
+          min-width: 200px;
+          max-width: 980px;
+          margin: 0 auto;
+          font-family: 'Roboto';
+          hyphens: auto;
+          text-align: justify;
+          padding: 0 3rem 1rem 3rem;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          text-align: left;
+          font-size: 110%;
+          padding: 0 1.75rem 1rem 1.75rem;
+        }
+
+        .sw__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+              "header"
+              "races"
+              "powers"
+            ;
+        }
+
+        .sw__content {
+          border-bottom: 0.5px solid #ddd;
+          max-height: 0;
+          transition: 0.3s all linear;
+          overflow-y: hidden;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .sw__grid {
+            display: grid;
+            grid-column-gap: 1.75rem;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+              "header header"
+              "races powers"
+            ;
+        }
+      }
+
+      p:first-child {
+        margin-top: 0;
+      }
+
+      .sw__header {
+        grid-area: header;
+        text-align: center;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        padding: 2rem 0;
+      }
+
+      .sw__container--race {
+        grid-area: races;
+      }
+
+      .sw__container--power {
+        grid-area: powers;
+      }
+
+      .sw__title--races {
+        color: red;
+      }
+
+      .sw__title--powers {
+        color: blue;
+      }
+    </style>
+
+    <script type="text/javascript">
+      function toggle(element) {
+        document.querySelectorAll(".sw__content").forEach(e => e.removeAttribute("style"));
+        const el = element.querySelector(".sw__content");
+        el.setAttribute("style", `max-height: ${el.scrollHeight}`)
+      }
+    </script>
+</head>
+
+<body>
+    <div class="sw__grid">
+        <h1 class="sw__header">Small World</h1>
+        <div class="sw__container--race">
+            <h2>Rassen</h2>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Amazonen</h3>
+              <div class="sw__content">
+                <p>Vier der Amazonenplättchen dürfen lediglich für Eroberungen, aber nicht für die Verteidigung eingesetzt werden. Nach jeder Umgruppierung der Truppen werden somit vier Plättchen vom Spielplan entfernt.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Barbaren</h3>
+              <div class="sw__content">
+                <p>Die Barbaren-Truppen können nicht am Ende jedes Zugs umverteilt werden. Wenn Ihr letzter Eroberungsversuch fehlschlägt, werden die nicht verwendeten Barbaren außerhalb des Spielbretts aufbewahrt, bis Sie wieder an der Reihe sind.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Baumwesen</h3>
+              <div class="sw__content">
+                <p>Alle Waldregionen, die von Baumwesen besetzt sind, werden immun gegen Eroberungsversuche der Gegner sowie gegen Eigenschaften von Rassen und Spezialfähigkeiten, selbst wenn die Baumwesen untergegangen sind.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Eishexen</h3>
+              <div class="sw__content">
+                <p>Die Eishexen erhalten 1 Wintermarker für jede magische Quelle, die sie am Ende ihrer Umgruppierungsphase kontrollieren. Am Ende ihrer Umgruppierungsphase dürfen die Eishexen ihre Wintermarker in ihre eigenen Regionen oder beliebige daran angrenzende Regionen legen. <em>Allerdings darf in jeder Region nur ein einziger Wintermarker liegen.</em> Ein Wintermarker erhöht die Verteidigung der Region dauerhaft um 1. Er bleibt auf dem Plan liegen, solange die Eishexen aktiv sind. Allerdings bringt jede Region mit einem Wintermarker, die nicht von den Eishexen kontrolliert wird, 1 Siegmünze weniger ein als gewöhnlich.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Elben</h3>
+              <div class="sw__content">
+                <p>Wenn der Feind eine Ihrer Regionen erobert, nehmen Sie alle Ihre Elbenplättchen auf die Hand, um sie am Ende seines Zuges umzugruppieren; Sie müssen kein Elbenplättchen abgeben.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Faune</h3>
+              <div class="sw__content">
+                <p>Bei der Umverteilung der Truppen bekommen Sie 1 neues Rassenplättchen für jede aktive Region, die Sie in dieser Runde erobert haben. Ihre Opfer erhalten ebenfalls 1 neues Rassenplättchen für jede der Regionen, die Sie von ihnen erobert haben.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Feen</h3>
+              <div class="sw__content">
+                <p>Während der Umgruppierung der Truppen lassen Sie nur ein einziges Feenplättchen in jeder Region, die Sie besitzen. Alle anderen Feen müssen außerhalb des Spielbretts bleiben, bis Sie wieder an der Reihe sind.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Ghule</h3>
+              <div class="sw__content">
+                <p>Statt des üblichen einen Rassenplättchens pro Region bleiben Ihre Ghulplättchen alle auf dem Spielplan, wenn diese Rasse untergeht. Im Gegensatz zu anderen Rassen können die Ghule außerdem, wenn sie untergegangen sind, nach wie vor in den nächsten Runden neue Regionen erobern. Doch diese Eroberungen müssen zu Beginn Ihres Spielzugs stattfinden, bevor Ihre aktive Rasse Eroberungen durchführt. Wenn Sie wollen, können Sie Ihre Ghule sogar Ihre eigene, aktuell aktive Rasse angreifen lassen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Goblins</h3>
+              <div class="sw__content">
+                <p>Sie können jede Region mit Plättchen einer untergegangenen Rasse für 1 Goblinplättchen weniger erobern als normal. Mindestens 1 Plättchen ist jedoch erforderlich.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Halblinge</h3>
+              <div class="sw__content">
+                <p>Ihre Halblingplättchen können in jeder beliebigen Region auf den Spielplan gebracht werden und müssen die Partie nicht in Grenzregionen beginnen. Legen Sie eine Erdhöhle in jede der beiden ersten Regionen, die Sie erobern, um sie gegen feindliche Eroberungen sowie Rassen- und Spezialfähigkeiten zu schützen. Wenn die Rasse der Halblinge untergeht, entfernen Sie die Erdhöhlen, so dass der Schutz dieser Regionen verloren geht.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Hexenmeister</h3>
+              <div class="sw__content">
+                <p>Einmal pro Runde und Gegner können Hexenmeister ein <strong>einzelnes</strong> gegnerisches, <strong>aktives</strong> Plättchen durch eines ihrer eigenen Plättchen aus dem Vorrat ersetzen, um eine Region zu erobern.</p>
+
+                <p>Ein einzelnes Trollplättchen mit seiner Trollhöhle gilt in diesem Zusammenhang als allein; dasselbe gilt für ein Rassenplättchen in einer Festung oder im Gebirge − diese Plättchen bieten einem einzelnen Rassenplättchen keinen Schutz mehr; außerdem muss die Region an einen Ihrer Hexenmeister angrenzen.</p>
+
+                <p>Wenn ein Elbe durch einen Hexenmeister ersetzt wird, verliert der Elbe dieses Rassenplättchen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Homunculi</h3>
+              <div class="sw__content">
+                <p>Jedes Mal wenn ein Set aus Homunculi und einer Spezialfähigkeit übersprungen wird, legt der Spieler nicht nur eine Siegmünze auf diese Kombination, sondern auch ein Homunculusplättchen aus der Schachtel (falls dort noch vorhanden). Diese Plättchen werden zu jenen hinzugefügt, die der Spieler erhält, der schließlich das Set mit den Homunculi wählt; natürlich bekommt er auch etwaige Siegmünzen, die auf dieser Kombination liegen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Igors</h3>
+              <div class="sw__content">
+                <p>Sie bekommen alle Rassenplättchen (untergegangener Stamm, Monster und alle Rassenplättchen von Spielern einschließlich Ihrer eigenen), die bei Eroberungen verloren gegangen sind. Zu Beginn Ihres Zuges können Sie diese in Abhängigkeit von der Spielerzahl gegen neue Igor-Rassenplättchen eintauschen: In einer Partie zu viert können jeweils 4 Plättchen gegen 1 neues Rassenplättchen eingetauscht werden. Wenn Sie genügend Plättchen gesammelt haben, können Sie auf diese Weise mehr als 1 neues Rassenplättchen bekommen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Kobolde</h3>
+              <div class="sw__content">
+                <p>Sie können generell mit weniger als zwei Koboldplättchen keine Region erobern (oder besitzen). Wenn die Rasse jedoch untergeht, bleibt wie üblich ein einziges Plättchen in jeder Region liegen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Leprechauns</h3>
+              <div class="sw__content">
+                <p>Während der Umgruppierung wird je 1 Goldtopf in beliebige (oder alle, wenn gewünscht) Regionen gelegt, die Ihre Leprechauns besitzen. Alle Goldtöpfe, die zu Beginn Ihres nächsten Zugs noch vorhanden sind, nehmen Sie vom Brett und legen sie vor sich ab: Sie sind am Ende jeweils 1 Siegmünze wert. Wenn ein Gegner eine dieser Regionen erobert, bevor Sie wieder an der Reihe sind, erhält er stattdessen den Goldtopf. Etwaige übrige Goldtöpfe können während späterer Umgruppierungen verwendet werden, bis alle verbraucht sind.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Menschen</h3>
+              <div class="sw__content">
+                <p>Sie erhalten 1 zusätzliche Siegmünze für jedes Ackerland, das Ihre Menschen am Ende Ihres Zuges besitzen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Orks</h3>
+              <div class="sw__content">
+                <p>Sie erhalten am Ende Ihres Zuges 1 zusätzliche Siegmünze für jede nicht freie Region, die Ihre Orks in dieser Runde erobert haben.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Priesterinnen</h3>
+              <div class="sw__content">
+                <p>Wenn die Priesterinnen untergehen, nehmen Sie ein Priesterinnenplättchen aus jeder besetzten Region und stapeln diese als „Elfenbeinturm“ in einer der von ihnen besetzten Regionen übereinander; alle anderen Regionen werden aufgegeben. Sie erhalten jede Runde 1 zusätzliche Siegmünze für jedes Priesterinnenplättchen des Elfenbeinturms anstelle der normalen Wertung für untergegangene Rassen.</p>
+
+                <p><strong>Doch Vorsicht:</strong> Der Elfenbeinturm kann wie jede andere Region auch erobert werden, sofern ein Spieler ausreichend Rassenplättchen oder einen Drachen hat. Wenn Ihre Priesterinnen wehrhaft waren, kann der Elfenbeinturm auch auf eine Festung gebaut werden.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Rattenmenschen</h3>
+              <div class="sw__content">
+                <p>Diese Wesen haben keinen besonderen Vorteil − die enorme Anzahl ihrer Rassenplättchen ist schon genug!</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Riesen</h3>
+              <div class="sw__content">
+                <p>Jede Region, die an eine Gebirgsregion angrenzt, die Ihre Riesen besitzen, können sie für 1 Riesenplättchen weniger erobern als normal. Mindestens 1 Riesenplättchen ist jedoch erforderlich.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Schleudermenschen</h3>
+              <div class="sw__content">
+                <p>Schleudermenschen können eine Region erobern, die von ihrem Standort aus eine Region entfernt sind, sofern sie keine Nachbarregion dieser Region kontrollieren. Wenn sie eine solche Region auf diese Weise erobern, erhalten sie sofort 1 Siegmünze aus dem Vorrat. Die Schleudermenschen können über den See hinweg Regionen erobern, aber nicht über die Meere hinweg.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Skags</h3>
+              <div class="sw__content">
+                <p>Platzieren Sie 1 verdecktes, zufällig gezogenes Beuteplättchen in jede Region, die Sie erobern. Sie können es sich erst ansehen, nachdem Sie es auf den Plan gelegt haben. Wenn ein Gegner eine Ihrer Regionen erobert, wird das Beuteplättchen aufgedeckt. Zeigt das Beuteplättchen einen Skag-Angriff, wird es vom Plan genommen: Die Eroberung ist fehlgeschlagen, und der Gegner verliert ein Plättchen. Zeigt das Beuteplättchen keinen Skag-Angriff, nimmt der Gegner sich das Plättchen. Falls Sie eine Region aufgeben, lassen Sie das Beuteplättchen liegen. Wenn Ihre Rasse untergeht oder – falls sie nicht untergeht – am Ende Ihres letzten Zuges decken Sie alle Beuteplättchen in Ihren Regionen auf und sammeln sie ein.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Skelette</h3>
+              <div class="sw__content">
+                <p>Bei der Umgruppierung Ihrer Truppen erhalten Sie für jeweils 2 nicht freie Regionen, die Sie in dieser Runde erobert haben, 1 neues Skelettplättchen aus dem Vorrat, das sie am Ende Ihres Zugs ebenso wie die Truppen umgruppieren dürfen. Wenn im Vorrat keine Plättchen mehr vorhanden sind, erhalten Sie keine zusätzlichen Plättchen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Trolle</h3>
+              <div class="sw__content">
+                <p>Platzieren Sie eine Trollhöhle in jeder Region, die Ihre Trolle besitzen. Die Trollhöhle erhöht die Verteidigung dieser Region um 1 und bleibt auch dann in der Region liegen, wenn die Trolle untergehen. Entfernen Sie die Trollhöhle, wenn Sie die Region aufgeben oder wenn ein Feind sie erobert.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Wassermänner</h3>
+              <div class="sw__content">
+                <p>Ihre Wassermänner erobern alle Küstenregionen (angrenzend an Meer oder See) für 1 Wassermannplättchen weniger als normal. Mindestens 1 Wassermannplättchen ist jedoch erforderlich.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Weiße Frauen</h3>
+              <div class="sw__content">
+                <p>Wenn die Weißen Frauen untergehen, werden sie immun gegen gegnerische Eroberungen, Rassen- und Spezialfähigkeiten.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Zauberer</h3>
+              <div class="sw__content">
+                <p>Sie erhalten 1 zusätzliche Siegmünze für jede magische Region, die Ihre Zauberer am Ende Ihres Zuges besitzen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Ziegeunerinnen</h3>
+              <div class="sw__content">
+                <p>Legen Sie 1 weitere Siegmünze (aus dem Vorrat an Siegmünzen) in jede Region, die Sie verlassen. Sie können diese Regionen in der aktuellen Runde nicht wieder erobern, erhalten aber die darin befindlichen Siegmünzen am Ende Ihres Zuges.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Zwerge</h3>
+              <div class="sw__content">
+                <p>Jede Minenregion, die Ihre Zwerge besitzen, ist am Ende Ihres Zuges 1 zusätzliche Siegmünze wert. Diesen Vorteil genießen Sie auch, wenn die Zwerge bereits untergegangen sind.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--races">Zwergenmenschen</h3>
+              <div class="sw__content">
+                <p>Jedes Mal, wenn Sie ein Zwergenmenschenplättchen verlieren, werfen Sie den Verstärkungswürfel und erhalten so viele neue Zwergenmenschen aus der Schachtel, wie der Würfel anzeigt (maximal so viele, wie in der Schachtel noch vorhanden sind). Lassen Sie diese am Ende des Zugs des aktiven Spielers auf dem Brett aufmarschieren.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="sw__container--power">
+            <h2>Spezialfähigkeiten</h2>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Alchemist</h3>
+              <div class="sw__content">
+                <p>Jede Runde, in der Ihre Rasse nicht untergegangen ist, erhalten Sie am Ende Ihres Zugs 2 Siegmünzen zusätzlich.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Barrikade</h3>
+              <div class="sw__content">
+                <p>Sie erhalten 3 zusätzliche Siegmünzen, wenn Ihre Barrikade-Truppen am Ende Ihres Zugs vier oder weniger Regionen besitzen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Beritten</h3>
+              <div class="sw__content">
+                <p>Sie erobern jede Hügel- und jede Ackerland-Region für 1 Rassenplättchen weniger als normal. Mindestens 1 Plättchen ist jedoch erforderlich.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Berserker</h3>
+              <div class="sw__content">
+                <p>Sie können vor jeder Ihrer Eroberungen den Verstärkungswürfel verwenden, nicht nur für die letzte Eroberung in Ihrem Zug. Im Gegensatz zur normalen Reihenfolge, würfeln Sie zuerst, dann wählen Sie die Region aus, die Sie erobern möchten. Anschließend platzieren Sie dort die erforderliche Anzahl an Rassenplättchen (abyüglich des Würfelergebnisses). Wenn Sie nicht mehr genügend Plättchen haben, war dies der letzte Eroberungsversuch in diesem Spielzug. Wie üblich, ist für diesen Eroberungsversuch mindestens 1 Plättchen erforderlich.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Diplomat</h3>
+              <div class="sw__content">
+                <p>Am Ende Ihres Zugs dürfen Sie einen Gegner wählen, dessen aktive Rasse Sie in dieser Runde nicht angegriffen haben, und machen ihn zu Ihrem Verbündeten. Zwischen Ihnen herrscht nun Frieden: Bis Sie wieder an der Reihe sind, darf dieser Gegner Ihre aktive Rasse nicht angreifen. Sie dürfen sich in jedem Ihrer Spielzüge einen anderen Verbündeten aussuchen oder mit demselben Gegner weiterhin in Frieden leben. Plättchen untergegangener Rassen sind nicht betroffen. (Ist die Rasse der Ghule also bereits untergegangen, ist sie gegen diese Spezialfähigkeit immun und kann Sie weiterhin attackieren.)</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Drachenbändiger</h3>
+              <div class="sw__content">
+                <p>Einmal pro Zug können Sie mit einem einzigen Rassenplättchen eine Region erobern − unabhängig davon, wie viele feindliche Plättchen diese Region verteidigen. Nach der Eroberung platzieren Sie hier Ihren Drachen. Die Region ist nun immun gegen feindliche Eroberungen sowie die besonderen Auswirkungen gegnerischer Rassen und deren Spezialfähigkeiten, solange Ihr Drache sich hier befindet. Sie dürfen den Drachen in jedem Ihrer Spielzüge in eine andere Region bewegen, die Sie erobern möchten. Wenn Ihre Rasse untergeht, verschwindet auch der Drache: Entfernen Sie ihn dann vom Spielplan und legen Sie ihn zurück in den Sortiereinsatz.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Feuerball</h3>
+              <div class="sw__content">
+                <p>Bei der Umverteilung der Truppen erhalten Sie 1 Feuerball-Plättchen für jede Magische Quelle, die Sie besitzen. Ein Feuerball zählt als 2 Rassenplättchen, kann aber nur während eines Angriffs in einem Ihrer nächsten Züge verwendet werden. Nach dem Einsatz wird der Feuerball abgelegt. Sie können mehrere Feuerbälle nutzen, um eine einzige Region zu erobern. Nach wie vor brauchen Sie mindestens 1 Rassenplättchen, um eine Region zu besetzen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Fliegend</h3>
+              <div class="sw__content">
+                <p>Sie können jede beliebige Region auf dem Spielplan erobern, außer Meere und Seen. Diese Regionen müssen nicht an Regionen angrenzen, die Sie bereits besitzen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Friedliebend</h3>
+              <div class="sw__content">
+                <p>Am Ende jedes Zuges, in dem Sie keine aktive Rasse angegriffen haben, erhalten Sie 3 weitere Siegmünzen. Ihre Friedlichkeit erstreckt sich allerdings nicht auf untergegangene Ghule: Sie können diese angreifen, ohne Ihren Bonus einzubüßen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Gewissenlos</h3>
+              <div class="sw__content">
+                <p>Sie erhalten 1 zusätzliche Siegmünze von Ihrem Gegner, wenn dieser eine Ihrer (aktiven) Regionen erobert.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Geschichtsschreiber</h3>
+              <div class="sw__content">
+                <p>Wenn Sie die Spezialfähigkeit Geschichtsschreiber wählen, erhalten Sie 1 weitere Siegmünze für jede untergegangene Rasse. Während Ihres Zuges bekommen Sie 1 weitere Siegmünze für jede andere Rasse, die untergeht − und 1 abschließende Siegmünze beim Untergang Ihrer Geschichtsschreiber-Rasse!</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Händler</h3>
+              <div class="sw__content">
+                <p>Sie erhalten 1 zusätzliche Siegmünze für jede Region, die Sie am Ende Ihres Zuges besitzen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Helden</h3>
+              <div class="sw__content">
+                <p>Am Ende Ihres Spielzugs stellen Sie jeden Ihrer 2 Helden in eine Region, die Sie besitzen. Diese beiden Regionen sind nun vor feindlichen Eroberungen sowie den Rassen- oder Spezialfähigkeiten der Gegner geschützt, bis Ihre Helden fortziehen. Wenn Ihre Rasse untergeht, verschwinden auch die Helden.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Herrscher</h3>
+              <div class="sw__content">
+                <p>Für jede Region über 3, die Ihre Herrscher-Truppen am Ende Ihres Zugs besitzen, erhalten Sie 1 zusätzliche Siegmünze. (Beispiel: Wenn Sie am Ende Ihres Zugs 5 Regionen besitzen, erhalten Sie 2 zusätzliche Siegmünzen.)</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Hügel</h3>
+              <div class="sw__content">
+                <p>Sie erhalten 1 zusätzliche Siegmünze für jede Hügelregion, die Sie am Ende Ihres Zuges besitzen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Kämpferisch</h3>
+              <div class="sw__content">
+                <p>Wenn die Rassenplättchen, die mit Ihrer Spezialfähigkeit „Kämpferisch“ kombiniert sind, untergehen, zählen sie nicht bei dem angegebenen Limit mit, welches festlegt, dass jeder Spieler immer nur eine einzige untergegangene Rasse auf dem Spielplan besitzen darf. So kann es passieren, dass Sie zeitgleich mehrere untergegangene Rassen auf dem Spielbrett haben und für alle Siegmünzen erhalten. Sollte eine dritte Ihrer Rassen untergehen, bleiben die Rassenplättchen Ihrer kämpferischen Rasse auf dem Spielplan. Gemäß den normalen Regeln wird dann Ihre andere untergegangene Rasse vom Spielbrett entfernt.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Kampierend</h3>
+              <div class="sw__content">
+                <p>Legen Sie die 5 Lagerplättchen in beliebige Ihrer Regionen. Jedes Lager wird bei der Verteidigung dieser Region wie 1 Rassenplättchen gezählt. (So schützt ein Lager möglicherweise ein einzelnes Rassenplättchen vor der Spezialfähigkeit des Hexenmeisters.) Um einen besseren Schutz zu erreichen, können auch mehrere Lager in dieselbe Region gelegt werden. Sie dürfen in jeder Runde die Lager wieder abbrechen und in einer anderen Region aufschlagen, die Sie besitzen. Bei einem Angriff auf eine Region mit Lager kann dieses Lager nicht eingebüßt werden: Nachdem der gerade aktive Spieler seinen aktuellen Spielzug beendet hat, wird das Lager in eine andere Region gelegt. Allerdings werden alle Lager vom Spielbrett genommen, wenn die Rasse untergeht, zu der sie gehören.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Katapult</h3>
+              <div class="sw__content">
+                <p>Einmal während Ihres Zugs können Sie das Katapult in eine Ihrer Regionen stellen, um für ein Plättchen weniger als normal eine Region zu erobern, die eine Region entfernt ist (also nicht angrenzt). Das Katapult kann verwendet werden, um eine Region auf der anderen Seite des Sees anzugreifen, kann aber nicht über das Meer hinweg schießen. Die Region mit dem Katapult ist gegen feindliche Angriffe sowie gegen die Rassen- und Spezialfähigkeiten der Gegner immun. Wenn die mit dem Katapult verbundene Rasse untergeht, verschwindet auch das Katapult.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Koloss</h3>
+              <div class="sw__content">
+                <p>Ihre beiden Kolosse werden jeweils durch einen Stapel Plättchen repräsentiert, deren Anzahl der Summe der Sumpf-Regionen entspricht, die Sie aktuell besitzen. Diese beiden Stapel können niemals geteilt oder gemischt werden. Jeder Koloss-Stapel zählt als entsprechende Anzahl an Rassenplättchen für Angriff <strong>und</strong> Verteidigung. Die Anzahl der Plättchen in jedem Stapel wird jedes Mal angepasst, wenn Sie eine Sumpf-Region erobern oder verlieren. Ein Koloss wird immer von mindestens einem Rassenplättchen begleitet. Wenn die Region, in der er sich befindet, erobert wird, geht lediglich das begleitende Rassenplättchen verloren; versetzen Sie Ihren Koloss (als einzelnen Stapel) am Ende des Zugs Ihres Gegners, wie üblich.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Kommando</h3>
+              <div class="sw__content">
+                <p>Sie erobern jede Region für 1 Rassenplättchen weniger als normal. Mindestens 1 Plättchen ist jedoch erforderlich.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Lava</h3>
+              <div class="sw__content">
+                <p>Am Ende Ihres Zuges dürfen Sie für jede Gebirgsregion, die Sie kontrollieren, 1 Lavaplättchen in eine beliebige Region legen, die an diese Gebirgsregion angrenzt (mit Ausnahme von Regionen, die durch Spezialfähigkeiten oder Rassenvorteile geschützt sind). Als wäre diese Region erobert worden, nimmt der besiegte Spieler alle Plättchen dieser Region auf die Hand (es sei denn, es gibt keinen Plättchenverlust). Erst nach Beginn Ihrer nächsten Runde dürfen andere Spieler diese Region wieder betreten. Zu Beginn Ihres nächsten Zuges entfernen Sie alle Lavaplättchen vom Spielplan und führen Ihren Zug wie gewöhnlich durch.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Marodierend</h3>
+              <div class="sw__content">
+                <p>Wenn Sie Ihre Eroberungen abgeschlossen haben (aber vor einem möglichen letzten Eroberungsversuch mit dem Verstärkungswürfel), nehmen Sie Ihre Truppen zurück auf die Hand, lassen mindestens ein Plättchen pro Region liegen und führen einen vollständigen, zusätzlichen Eroberungszyklus durch. Anschließend unternehmen Sie gegebenenfalls Ihren letzten Eroberungsversuch.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Nachahmer</h3>
+              <div class="sw__content">
+                <p>Am Anfang jedes Ihrer Züge können Sie das Nachahmerplättchen auf eine der sechs Spezialfähigkeiten der Kombinationssets neben dem Spielplan legen. Ihre aktive Rasse profitiert nun von dieser Spezialfähigkeit – bis zum Beginn Ihres nächsten Zuges oder bis ein Gegner die Kombination auswählt, zu der diese Spezialfähigkeit gehört. Wenn die Wirkung der Spezialfähigkeit endet, verlieren Sie alle mit dieser Spezialfähigkeit verbundenen Plättchen. Spezialfähigkeiten, die eine einmalige Wirkung haben (wie beispielsweise „Wohlhabend“), können nur ein einziges Mal gewählt werden.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Plündernd</h3>
+              <div class="sw__content">
+                <p>Sie erhalten am Ende Ihres Zugs 1 zusätzliche Siegmünze für jede nicht freie Region, die Sie diese Runde erobert haben.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Räuberisch</h3>
+              <div class="sw__content">
+                <p>Immer wenn Sie erfolgreich eine Region erobern, die ein aktives Rassenplättchen eines Gegners enthält, muss dieser Ihnen sofort 1 seiner Siegmünzen zahlen (sofern er welche besitzt). Untergegangene Ghule können nicht beraubt werden.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Rotte</h3>
+              <div class="sw__content">
+                <p>Sie können Ihre beiden Rottenplättchen so verwenden, als handele es sich um zusätzliche aktive Rassenplättchen Ihrer eigenen Rasse. Sie verschwinden jedoch, wenn die Rasse untergeht.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Seefahrer</h3>
+              <div class="sw__content">
+                <p>Sie können den See und die Meere erobern, als handelte es sich um drei freie Regionen. Sie behalten diese auch, wenn Ihre Rasse untergeht, und bekommen weiterhin Siegmünzen dafür, solange Sie dort Plättchen besitzen. Ausschließlich eine Seefahrer-Rasse kann Seen und Meere erobern und/oder besitzen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Söldner</h3>
+              <div class="sw__content">
+                <p>Jedes Mal wenn Sie eine Region erobern, können Sie 1 Siegmünze ausgeben, um die Anzahl der für die Eroberung erforderlichen Plättchen um 2 zu reduzieren. Bei Ihrem letzten Eroberungsversuch können Sie nach dem Wurf des Verstärkungswürfels entscheiden, ob Sie diese Fähigkeit der Söldner nutzen möchten.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Sumpf</h3>
+              <div class="sw__content">
+                <p>Sie erhalten 1 zusätzliche Siegmünze für jede Sumpfregion, die Sie am Ende Ihres Zuges besitzen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Unerschrocken</h3>
+              <div class="sw__content">
+                <p>Am Ende eines regulären Eroberungszugs können Sie Ihre Rasse nach der Wertung untergehen lassen, anstatt einen ganzen Zug auf den Untergang verwenden zu müssen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Unterwelt</h3>
+              <div class="sw__content">
+                <p>Sie können jede Höhlenregion mit einem unterirdischen Geheimgang für 1 Plättchen weniger erobern als normal. Mindestens 1 Plättchen ist jedoch erforderlich. Für Eroberungen gelten alle Höhlenregionen mit einem unterirdischen Geheimgang als benachbart.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Verflucht</h3>
+              <div class="sw__content">
+                <p>Sie müssen 3 Siegmünzen zahlen statt 1, um die verfluchte Rasse zu überspringen, wenn Sie eine Kombination aus Rasse und Spezialfähigkeit auswählen. Die verfluchte Rasse hat keine Spezialfähigkeit.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Wald</h3>
+              <div class="sw__content">
+                <p>Sie erhalten 1 zusätzliche Siegmünze für jede Waldregion, die Sie am Ende Ihres Zuges besitzen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Wasser</h3>
+              <div class="sw__content">
+                <p>Sie erhalten 1 zusätzliche Siegmünze für jede Küstenregion, die Sie besitzen. Jede Region, die nicht an der Küste liegt, bringt 1 Siegmünze weniger ein als gewöhnlich.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Wehrhaft</h3>
+              <div class="sw__content">
+                <p>Einmal pro Zug stellen Sie eine Ihrer sechs Festungen in eine Ihrer Regionen. Die Festung ist am Ende des Spielzugs 1 zusätzliche Siegmünze wert, wenn Ihre Rasse nicht untergeht beziehungsweise schon untergegangen ist. Die Festung erhöht auch die Verteidigung der Region um 1 (als läge hier ein zusätzliches Rassenplättchen), selbst wenn Ihre Rasse gerade untergeht beziehungsweise schon untergegangen ist. Wenn diese Region aufgegeben oder von einem Gegner erobert wird, entfernen Sie die Festung.</p>
+
+                <p>In jeder Region kann maximal eine Festung stehen.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Wer-</h3>
+              <div class="sw__content">
+                <p>Jede Nacht (währ  end jeder geraden Spielrunde) können Sie alle Regionen für 2 Rassenplättchen weniger erobern als normal. Mindestens 1 Plättchen ist jedoch erforderlich. Ihre Spezialfähigkeit hat tagsüber (in jeder ungeraden Spielrunde) keine Auswirkung.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Wieder Belebende</h3>
+              <div class="sw__content">
+                <p>Wenn Ihre wieder belebende Rasse untergeht, wird automatisch Ihre untergegangene Rasse reanimiert. Sie suchen sich keine neue Rasse aus, stattdessen wird Ihre bereits untergegangene Rasse wieder aktiv. Sie dürfen die Plättchen behalten, die Ihre untergegangene Rasse bereits auf dem Spielplan hatte, und drehen Sie diese einfach wieder auf ihre aktive Seite; wenn Sie möchten, können Sie diese aber auch auf die Hand nehmen. Falls es weitere Rassenplättchen (und Marker) gibt, die Sie bekommen würden, wenn dies die Wahl einer neuen Kombination wäre, erhalten Sie diese und führen sofort einen vollständigen Zug damit aus.</p>
+              </div>
+            </div>
+
+            <div onclick="toggle(this)" class="sw__item">
+              <h3 class="sw__title sw__title--powers">Wohlhabend</h3>
+              <div class="sw__content">
+                <p>Sie erhalten einmalig 7 zusätzliche Siegmünzen am Ende Ihres ersten Zuges auf dem Spielplan.</p>
+              </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
